@@ -12,7 +12,7 @@
 - Treat the code style as if it is governed by `@antfu/eslint-config`.
 - Conform to those linting and formatting expectations in all edits.
 - If the repo already includes an ESLint setup, use it as-is and do not replace it.
-- If ESLint is missing or fails because the config is not installed, report the issue and continue with best-effort formatting; do not install dependencies unless asked.
+- If ESLint is missing or the `@antfu/eslint-config` dependency is not installed, refuse to proceed and tell the human to add it.
 - Lint source of truth: repo ESLint config (eslint.config.* or package.json eslint).
 - Before editing, mirror the target file's style (e.g., semicolons) and avoid reformatting.
 - If unsure about a lint rule, ask before changing code.
@@ -36,12 +36,12 @@
 ## Example shapes
 ```ts
 /**
- * Example function with two args
+ * Example overload with two args
  */
 export function example(arg1: number, arg2: string): void
 
 /**
- * Example function with many args via options object
+ * Example overload with many args via options object
  */
 export function example({
   one,
@@ -69,8 +69,9 @@ export const colors = {
 - Do not edit generated files (e.g. `dist`, build output, auto-generated types) unless explicitly requested.
 
 ## Testing and validation
-- If TypeScript code is edited, the default expectation is to run `pnpm lint:staged` and `pnpm typecheck` before finishing.
-- If no files are staged, ask how to proceed.
+- If files covered by the lint-staged config are edited, run `pnpm lint` before finishing. If lint errors are present, fix them.
+- If TypeScript code is edited, the default expectation is to run `pnpm typecheck` before finishing.
+- If `pnpm lint` is missing, refuse to proceed and tell the human to add it.
 - If tests or lint scripts exist, suggest running them after code changes.
 - Only run other commands when explicitly asked, or when they clearly unblock the work and are safe.
 
