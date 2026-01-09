@@ -1,0 +1,19 @@
+{
+  "name": "agents",
+  "scripts": {
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "lint:staged": "lint-staged",
+    "typecheck": "tsc --noEmit"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,cjs,mjs}": "eslint"
+  },
+  "packageManager": "pnpm@10.27.0",
+  "devDependencies": {
+    "@antfu/eslint-config": "^6.7.3",
+    "eslint": "^9.39.2",
+    "lint-staged": "^16.2.7",
+    "typescript": "^5.9.3"
+  }
+}
