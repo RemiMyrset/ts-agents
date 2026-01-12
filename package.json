@@ -1,6 +1,7 @@
 {
   "name": "agents",
   "packageManager": "pnpm@10.27.0",
+  "license": "Unlicense",
   "scripts": {
     "lint": "eslint",
     "lint:fix": "eslint --fix",

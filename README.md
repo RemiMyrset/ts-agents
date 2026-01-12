@@ -2,36 +2,13 @@
 
 Universal `AGENTS.md` for TypeScript projects.
 
-## Contents
+## Use
 
-- `AGENTS.md` with repo-agnostic guidance for agents.
-- `eslint.config.mjs` for local linting in this repo.
-- This repository uses ESLint and @antfu/eslint-config only to lint and validate `AGENTS.md` itself; these tools are not required by `AGENTS.md`.
+- Copy `AGENTS.md` to the repo root.
+- Adjust only when your repo needs extra instructions.
 
-## Local tooling (this repository only)
+## Repo contents
 
-Dev dependencies:
-- @antfu/eslint-config
-- eslint
-- typescript
-
-Add them explicitly (pnpm example):
-```sh
-pnpm add -D @antfu/eslint-config eslint typescript
-```
-
-## Scripts
-
-```json
-{
-  "lint": "eslint",
-  "lint:fix": "eslint --fix",
-  "typecheck": "tsc --noEmit"
-}
-```
-
-## Usage in other repos
-
-- Copy `AGENTS.md` into the repo root.
-- Align lint/typecheck scripts with the project's tooling.
-- No specific linting or package manager setup is required unless the project already uses one.
+- `AGENTS.md` guidance for agents.
+- `src/` examples showing preferred documentation and comment shapes.
+- Local lint/typecheck config for this repo only.
