@@ -7,14 +7,12 @@
 - Follow the local project conventions first; only deviate when this file explicitly says so.
 - Keep changes minimal and focused on the request.
 - Do not add new dependencies or modify tooling unless the user asks.
-- When asked to reuse an existing implementation or example, find it in the repo and copy it verbatim unless told otherwise.
 - When running scripts, use the project's package manager (packageManager field, lockfile, or docs) instead of assuming pnpm.
 
 ## ESLint and formatting
 - Conform to the repo's linting and formatting expectations in all edits.
 - If the repo already includes an ESLint setup, use it as-is and do not replace it.
 - If the repo has no ESLint configuration, continue with best-effort formatting and tell the human it is unavailable.
-- Lint source of truth: repo ESLint config (eslint.config.* or package.json eslint).
 - Before editing, mirror the target file's style (e.g., semicolons) and avoid reformatting.
 - If unsure about a lint rule, ask before changing code.
 - Do not reorder imports unless required by the existing lint configuration or necessary for correctness.
