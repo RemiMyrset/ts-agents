@@ -1,8 +1,8 @@
 # ts-agents
 
-Universal `AGENTS.md` for TypeScript projects.
-- Will run type checking and linting when those scripts exist.
-- Will not run tests.
+Universal `AGENTS.md` for TypeScript projects, published here for reuse.
+- Agents are expected to run type checking and linting when those scripts exist.
+- Agents are expected to avoid running tests unless asked.
 
 ## Use
 

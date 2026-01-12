@@ -14,11 +14,6 @@ export function example(arg1: number): void
 export function example(arg1: number, arg2: string): void
 
 /**
- * Example function with three args
- */
-export function example(arg1: number, arg2: string, arg3: boolean): void
-
-/**
  * Example function with many args via options object
  */
 export function example({
@@ -27,13 +22,13 @@ export function example({
   three,
   four,
 }: {
-  /** One is a number */
+  /** First operand */
   one: number
-  /** Two is a string */
+  /** Second operand */
   two: string
-  /** Three is a Boolean */
+  /** Third operand */
   three: boolean
-  /** Four is another string */
+  /** Fourth operand */
   four: string
 }): void
 
@@ -41,7 +36,6 @@ export function example(
   ...args: (
     | number
     | string
-    | boolean
     | {
       one: number
       two: string
