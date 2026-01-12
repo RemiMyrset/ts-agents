@@ -28,6 +28,9 @@
 - Avoid classes; prefer functions and plain objects.
 - Avoid enums; prefer string/number literal unions or const objects with `as const`.
 
+## Style / Architecture
+- Keep entrypoint modules focused on orchestration: they should wire dependencies and delegate logic rather than contain detailed implementation.
+
 ## Documentation (JSDoc)
 - Use JSDoc block comments (`/** ... */`) directly above the thing being documented.
 - For overloaded functions, add a short doc block above each overload.
@@ -40,6 +43,8 @@
 - Prioritize documentation for public APIs (exported and intended for external use); avoid adding JSDoc to private or internal helpers unless the behavior is non-obvious.
 - If code behavior changes, update or remove related comments in the same edit.
 - When in doubt, prefer fewer comments over more comments.
+- For options expressed via destructured params, document the *typed shape* rather than the binding so editor hints appear correctly (e.g., put comments above keys within the type literal).
+- When adding inline property docs inside a type annotation, place the comment on its own line directly above the property key.
 
 ## Example shapes
 ```ts
@@ -98,6 +103,11 @@ export const colors = {
 - If TypeScript code is edited, the default expectation is to run the repo's typecheck script before finishing (e.g. `npm run typecheck`, `pnpm typecheck`, `yarn typecheck`, `bun run typecheck`).
 - If tests or lint scripts exist, suggest running them after code changes.
 - Only run other commands when explicitly asked, or when they clearly unblock the work and are safe.
+
+## Zero-Error Rule
+- Do not introduce new errors; a task is considered complete only when `typecheck` and lint (if applicable) succeed with no errors.
+- Avoid placeholder code, unhandled `any`, or partial implementations that leave the codebase in a broken or incomplete state.
+- Only use suppressions (e.g., `// @ts-ignore`) when explicitly requested.
 
 ## When in doubt
 - Ask a brief clarifying question instead of making a risky assumption.
