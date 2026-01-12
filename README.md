@@ -1,4 +1,4 @@
-# Agents
+# ts-agents
 
 Universal `AGENTS.md` for TypeScript projects.
 
