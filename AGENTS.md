@@ -23,6 +23,7 @@
 - Prefer explicit types where it improves clarity; avoid overly verbose annotations.
 - Use modern TypeScript/ES features when they improve readability.
 - Avoid any/unknown unless required by external APIs; narrow types promptly.
+- Prefer `T[]` over `Array<T>`.
 - Prefer positional args for up to 2 required, distinct types; switch to an object when you have 3+ args, optional args, multiple same-typed params, booleans/flags, or expect the signature to grow.
 - Avoid classes; prefer functions and plain objects.
 - Avoid enums; prefer string/number literal unions or const objects with `as const`.
@@ -54,22 +55,34 @@ export function example({
   one,
   two,
 }: {
-  /** One is a number */
+  /** First operand */
   one: number
-  /** Two is a string */
+  /** Second operand */
   two: string
+
 }): void
 
-export function example(...args: unknown[]): void {
+export function example(
+  ...args: (
+    | number
+    | string
+    | {
+      one: number
+      two: string
+    }
+  )[]
+): void {
   console.debug(args)
 }
 
 /**
- * A list of colors
+ * Commodore 64 color palette (Pepto)
  */
 export const colors = {
   black: 0x000000,
   white: 0xFFFFFF,
+  /** Default background color. */
+  lightBlue: 0x6C5EB5,
 } as const
 ```
 

@@ -37,6 +37,18 @@ export function example({
   four: string
 }): void
 
-export function example(...args: unknown[]): void {
+export function example(
+  ...args: (
+    | number
+    | string
+    | boolean
+    | {
+      one: number
+      two: string
+      three: boolean
+      four: string
+    }
+  )[]
+): void {
   console.debug(args)
 }

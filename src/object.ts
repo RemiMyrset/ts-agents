@@ -16,6 +16,7 @@ export const colors = {
   darkGrey: 0x444444,
   grey: 0x6C6C6C,
   lightGreen: 0x9AD284,
+  /** Default background color. */
   lightBlue: 0x6C5EB5,
   lightGrey: 0x959595,
 } as const
