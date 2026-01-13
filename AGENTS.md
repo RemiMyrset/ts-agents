@@ -22,7 +22,7 @@
 - Use modern TypeScript/ES features when they improve readability.
 - Avoid any/unknown unless required by external APIs; narrow types promptly.
 - Prefer `T[]` over `Array<T>`.
-- Prefer positional args for up to 2 required, distinct types; switch to an object when you have 3+ args, optional args, multiple same-typed params, booleans/flags, or expect the signature to grow.
+- Prefer positional args; use an options object when it improves clarity or when there are 3+ params.
 - Avoid classes; prefer functions and plain objects.
 - Avoid enums; prefer string/number literal unions or const objects with `as const`.
 
