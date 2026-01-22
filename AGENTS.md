@@ -25,6 +25,7 @@
 - Prefer positional args; use an options object when it improves clarity or when there are 3+ params.
 - Avoid classes; prefer functions and plain objects.
 - Avoid enums; prefer string/number literal unions or const objects with `as const`.
+- For string literal unions, always use human-readable strings (e.g., "Logged Out") instead of kebab-case (e.g., "logged-out"), unless the user explicitly asks for machine-readable strings.
 
 ## Style / Architecture
 - Keep entrypoint modules focused on orchestration: they should wire dependencies and delegate logic rather than contain detailed implementation.
