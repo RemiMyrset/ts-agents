@@ -99,12 +99,18 @@ export const colors = {
 ## Testing and validation
 - Track the files you edit during the task.
 - If the repo defines a lint script or ESLint configuration, run the repo's lint script before finishing (e.g. `npm run lint`, `pnpm lint`, `yarn lint`, `bun run lint`). If lint errors are present, run the repo’s lint tool in fix mode only on the edited files, if supported, then re-run the lint script until clean.
-- If TypeScript code is edited, the default expectation is to run the repo's typecheck script before finishing (e.g. `npm run typecheck`, `pnpm typecheck`, `yarn typecheck`, `bun run typecheck`).
+- If the repo has a `typecheck` script or a `tsconfig.json`, run typechecking before finishing for any code or config changes (not just `.ts` files).
+- If a `typecheck` script exists, use it (e.g. `npm run typecheck`, `pnpm typecheck`, `yarn typecheck`, `bun run typecheck`).
+- If no `typecheck` script exists but `tsconfig.json` does, run `packageManager exec tsc --noEmit -p tsconfig.json` and report if `tsc` is unavailable.
+- After each edit batch that changes code or config, re-run typechecking; do not wait until the final reply.
+- If the editor or TS language service shows a TypeScript error, stop and fix it before continuing.
+- No new code is considered complete until a fresh typecheck is clean after the last edit.
+- Only skip typechecking for doc-only changes, and say explicitly that it was skipped.
 - If tests or lint scripts exist, suggest running them after code changes.
 - Only run other commands when explicitly asked, or when they clearly unblock the work and are safe.
 
 ## Zero-Error Rule
-- Do not introduce new errors; a task is considered complete only when `typecheck` and lint (if applicable) succeed with no errors.
+- Do not introduce new errors; a task is considered complete only when `typecheck` and lint (if applicable) succeed with no errors, unless the user explicitly approves skipping them.
 - Avoid placeholder code, unhandled `any`, or partial implementations that leave the codebase in a broken or incomplete state.
 - Only use suppressions (e.g., `// @ts-ignore`) when explicitly requested.
 
