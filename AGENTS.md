@@ -29,7 +29,7 @@
 - Do not use `.js` extensions in import specifiers (e.g., `import { createServer } from "./server.js"`); prefer extensionless paths unless the user explicitly asks otherwise.
 
 ## Style / Architecture
-- Keep entrypoint modules focused on orchestration: they should wire dependencies and delegate logic rather than contain detailed implementation.
+- Entrypoints (e.g., `index.ts`, `main.ts`, `server.ts`, `cli.ts`) must be orchestration-only: wire dependencies, register routes/handlers by importing modules, and start/stop the process with graceful shutdown; do not put validation/parsing/business logic/rendering/data access in entrypoints.
 
 ## Documentation (JSDoc)
 - Use JSDoc block comments (`/** ... */`) directly above the thing being documented.
