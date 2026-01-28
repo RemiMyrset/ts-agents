@@ -98,6 +98,7 @@ export const colors = {
 
 ## Testing and validation
 - Track the files you edit during the task.
+- If the repo provides `lint-staged`, `typecheck`, and `test` scripts, prefer a single full validation chain using the repo's package manager (e.g., `pnpm lint-staged && pnpm typecheck && pnpm test`).
 - If the repo defines a lint script or ESLint configuration, run the repo's lint script before finishing (e.g. `npm run lint`, `pnpm lint`, `yarn lint`, `bun run lint`). If lint errors are present, run the repo’s lint tool in fix mode only on the edited files, if supported, then re-run the lint script until clean.
 - If the repo has a `typecheck` script or a `tsconfig.json`, run typechecking before finishing for any code or config changes (not just `.ts` files).
 - If a `typecheck` script exists, use it (e.g. `npm run typecheck`, `pnpm typecheck`, `yarn typecheck`, `bun run typecheck`).
@@ -105,7 +106,6 @@ export const colors = {
 - After each edit batch that changes code or config, re-run typechecking; do not wait until the final reply.
 - If the editor or TS language service shows a TypeScript error, stop and fix it before continuing.
 - No new code is considered complete until a fresh typecheck is clean after the last edit.
-- Only skip typechecking for doc-only changes, and say explicitly that it was skipped.
 - If tests or lint scripts exist, suggest running them after code changes.
 - Only run other commands when explicitly asked, or when they clearly unblock the work and are safe.
 
