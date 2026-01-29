@@ -28,6 +28,10 @@
 - For string literal unions, always use human-readable strings (e.g., "Logged Out") instead of kebab-case (e.g., "logged-out"), unless the user explicitly asks for machine-readable strings.
 - Do not use `.js` extensions in import specifiers (e.g., `import { createServer } from "./server.js"`); prefer extensionless paths unless the user explicitly asks otherwise.
 
+## Naming
+- Avoid abbreviations in identifiers; prefer full words for clarity (e.g., `request`/`response`, not `req`/`res`).
+- Common short forms are OK only when they are standard terms of art and widely unambiguous (e.g., `id`, `url`).
+
 ## Style / Architecture
 - Entrypoints (e.g., `index.ts`, `main.ts`, `server.ts`, `cli.ts`) must be orchestration-only: wire dependencies, register routes/handlers by importing modules, and start/stop the process with graceful shutdown; do not put validation/parsing/business logic/rendering/data access in entrypoints.
 
@@ -39,10 +43,10 @@
 - Keep comments concise and descriptive; prefer this style over `@param` tags for options objects.
 - Do not restate type information in prose (e.g. “is a number”, “is a string”) unless it adds semantic meaning.
 - Comments should explain intent, constraints, or non-obvious behavior; avoid describing what the code already makes obvious.
-- Do not add documentation to exported symbols whose purpose is obvious from the name and type.
-- Prioritize documentation for public APIs (exported and intended for external use); avoid adding JSDoc to private or internal helpers unless the behavior is non-obvious.
+- Prefer documenting public APIs (exported and intended for external use), even when the purpose seems obvious at first glance.
+- For private/internal helpers, add JSDoc when behavior is non-obvious; treat type guards, error normalization/mapping, parsing/validation helpers, and protocol glue as non-obvious by default.
 - If code behavior changes, update or remove related comments in the same edit.
-- When in doubt, prefer fewer comments over more comments.
+- When in doubt, prefer a short doc block over no documentation.
 - For options expressed via destructured params, document the *typed shape* rather than the binding so editor hints appear correctly (e.g., put comments above keys within the type literal).
 - When adding inline property docs inside a type annotation, place the comment on its own line directly above the property key.
 
