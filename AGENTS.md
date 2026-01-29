@@ -30,7 +30,7 @@
 
 ## Naming
 - Avoid abbreviations in identifiers; prefer full words for clarity (e.g., `request`/`response`, not `req`/`res`).
-- Common short forms are OK only when they are standard terms of art and widely unambiguous (e.g., `id`, `url`).
+- Common short forms are OK only when they are standard terms of art and widely unambiguous (e.g., `id`, `url`, `lhs`, `rhs`).
 
 ## Style / Architecture
 - Entrypoints (e.g., `index.ts`, `main.ts`, `server.ts`, `cli.ts`) must be orchestration-only: wire dependencies, register routes/handlers by importing modules, and start/stop the process with graceful shutdown; do not put validation/parsing/business logic/rendering/data access in entrypoints.
