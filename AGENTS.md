@@ -35,6 +35,21 @@
 ## Style / Architecture
 - Entrypoints (e.g., `index.ts`, `main.ts`, `server.ts`, `cli.ts`) must be orchestration-only: wire dependencies, register routes/handlers by importing modules, and start/stop the process with graceful shutdown; do not put validation/parsing/business logic/rendering/data access in entrypoints.
 
+## Cohesion and file boundaries
+- Each source file must have a single, explicit responsibility; if you cannot describe the file's purpose in one sentence without "and", split it.
+- Keep layering clear: do not mix domain logic with IO, rendering, UI, or orchestration in the same file.
+- Prefer one primary exported API per file; if multiple exports serve different concerns, split.
+- Add new features in new modules by default; extend an existing file only when the feature belongs to the same responsibility and shares internal data structures.
+- When a file already spans multiple concerns, extract the new concern instead of adding more.
+- Index or barrel files are for orchestration/re-exports only; avoid significant logic in them.
+- Hard size triggers apply to `*.ts`, `*.tsx`, `*.js`, and `*.jsx` source files.
+- Any source file over 600 lines must be split into smaller modules before adding new features in that area.
+- Any source file over 1000 lines must be split even for small edits.
+- Splitting oversized files is required and is considered in-scope; it overrides "keep changes minimal" unless the user explicitly opts out.
+- When splitting, create a folder named after the module and move sub-responsibilities into separate files.
+- Do not turn a non-index module into a pure barrel. The original file must remain the public façade and keep the top-level orchestration (construction, composition, policy decisions, and wiring).
+- Re-exports are allowed, but the original file should still "do the level 1 work" (call into submodules and assemble the final API).
+
 ## Documentation (JSDoc)
 - Use JSDoc block comments (`/** ... */`) directly above the thing being documented.
 - For overloaded functions, add a short doc block above each overload.
